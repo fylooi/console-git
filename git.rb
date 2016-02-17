@@ -30,7 +30,7 @@ class Git
 
   def method_missing(m, *args, &block)
     self.class.singleton_git.tap do |git|
-      incoming_methods = [m] + args
+      incoming_methods = [m] + sym_to_flag(args)
       git.calls << incoming_methods
     end
   end 
@@ -45,6 +45,12 @@ class Git
 
   def invoke
     system(to_s)
+  end
+
+  def sym_to_flag(args)
+    args.map do |arg| 
+      arg.is_a?(Symbol) ? "-#{arg.to_s}" : arg
+    end
   end
 end
 

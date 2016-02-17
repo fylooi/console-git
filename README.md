@@ -8,4 +8,4 @@ This worked fine, with the exception of mandatory fiddly quotation marks, especi
 1. Drop `git.rb` in the same folder as your project (for convenience)
 2. Run `irb` 
 3. Run `load 'git.rb'` 
-4. Call any git method using `.` in place of `<space>`, eg. `git.push.origin.master`. Flags need to be wrapped in quotes and passed to their respective methods, eg. `git.checkout('-b').new_branch` 
+4. Call any git method using `.` in place of `<space>`, eg. `git.push.origin.master`. Flags may be passed as symbols to the preceding command, eg. `git.checkout(:b).new_branch`.  
