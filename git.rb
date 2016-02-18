@@ -1,25 +1,18 @@
 class Git
   attr_accessor :calls
-  Mutt = Mutex.new
  
   class << self
-    def singleton_git
-      Mutt.synchronize { @singleton_git ||= new }  
+    def git_instance
+      @git_instance ||= new   
     end
 
-    def singleton_git=(val)
-      Mutt.synchronize { @singleton_git = val }  
+    def git_instance=(val)
+      @git_instance = val  
     end
 
     def git(*args)
-      self.singleton_git = nil
-
-      Thread.new do 
-        sleep(0.1)
-        singleton_git.invoke
-      end
-
-      singleton_git
+      self.git_instance = nil
+      git_instance
     end
   end
 
@@ -29,7 +22,7 @@ class Git
 
 
   def method_missing(m, *args, &block)
-    self.class.singleton_git.tap do |git|
+    self.class.git_instance.tap do |git|
       incoming_methods = [m] + sym_to_flag(args)
       git.calls << incoming_methods
     end
@@ -40,7 +33,7 @@ class Git
   end
 
   def inspect
-    to_s
+    puts invoke
   end
 
   def invoke
