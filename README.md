@@ -1,8 +1,7 @@
 # irb-git
 
 ## Background
-I wanted to run some Git commands from an irb console session. The simple approach is: `system 'git push origin master'`. 
-This worked fine, with the exception of mandatory fiddly quotation marks, especially with nested commit messages. Hence, I decided to improve the `git` experience within irb.   
+I wanted to be able to run Git commands from an irb console session instead of requiring a separate terminal per project. `system 'git push origin master'` works fine, but having to wrap every single command in `system('')` bugs me.
 
 ## Usage
 1. Drop `git.rb` in the same folder as your project (for convenience)
