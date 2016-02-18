@@ -10,7 +10,7 @@ I wanted to be able to run Git commands from an irb console session instead of r
 
 
 ## Syntax
-- Call any git method using `.` in place of `<space>`, eg. `git.push.origin.master`. 
+- Call git commands using `.` in place of `<space>`, eg. `git.push.origin.master`. The resulting command (`git push origin master`) will be executed immediately.
 - Flags may be passed as strings or symbols to the preceding command, eg. `git.checkout('-b').new_branch` or `git.checkout(:b).new_branch`.   
 - Names using dashes need to be passed as string arguments to the preceding command. They will be joined in the order provided, eg. `git.checkout :b, 'new-branch'`
 - Commit messages require special attention due to quotation marks, eg. `git.commit :am, '"this is a commit message"'`
